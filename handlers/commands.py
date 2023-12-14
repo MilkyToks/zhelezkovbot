@@ -3,6 +3,7 @@ from data import config
 from boot import bot, dp, types
 from kb.kb import ikb
 from db.dbcon import db
+from data.txt import SOURCE_MESSAGE
 
 @dp.message_handler(commands=['start'])
 async def start_command(message):
@@ -16,3 +17,7 @@ Hello, <a href=\"tg://user?id={user_id}\">{first_name}</a>!
 There's references to me 👇
 """
 , reply_markup=ikb)
+
+@dp.message_handler(commands=['source'])
+async def source_command(message):
+    await bot.send_message(chat_id=message.chat.id, text=SOURCE_MESSAGE)
